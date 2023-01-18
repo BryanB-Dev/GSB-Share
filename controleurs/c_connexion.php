@@ -26,6 +26,9 @@ switch($action){
 		}
 		break;
 	}
+	case 'deconnexion':{
+		deconnecter();
+	}
 	default :{
 		include("vues/v_connexion.php");
 		break;
