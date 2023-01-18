@@ -1,6 +1,6 @@
 # GSB Frais
 
-Projet réalisé à partir de projet [test22](https://github.com/olivierdupeyrat/test22).
+Projet réalisé à partir du projet [test22](https://github.com/olivierdupeyrat/test22).
 
 ## Construit avec
 
