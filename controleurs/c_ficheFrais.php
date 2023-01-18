@@ -1,6 +1,7 @@
 <?php
 include("vues/v_admin.php");
 $fiches=$pdo->getFiches();
+$etats=$pdo->getEtat();
 include("vues/v_listeFiche.php");
 $action = $_REQUEST['action'];
 

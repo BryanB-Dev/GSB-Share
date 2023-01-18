@@ -26,6 +26,9 @@ switch($uc){
 	case 'ficheFrais' :{
 		include("controleurs/c_ficheFrais.php");break; 
 	}
+	case 'libEtat' :{
+		include("controleurs/c_libEtat.php");break; 
+	}
 }
 include("vues/v_pied.php") ;
 ?>

@@ -13,14 +13,15 @@
     </tr>
 
     <?php    
-	    foreach( $fiches as $fiche) 
+        ob_start();
+	    foreach($fiches as $fiche) 
 		{
             $id = $fiche['id'];
             $prenom = $fiche['prenom'];
             $nom = $fiche['nom'];
 			$mois = $fiche['mois'];
 			$etat = $fiche['etat'];
-			$montant=$fiche['montant'];
+			$montant = $fiche['montant'];
 			$dateModif = $fiche['dateModif'];
             $nbJustificatifs = $fiche['nbJustificatifs'];
 	?>
@@ -45,18 +46,25 @@
         </td>
         <td>
             <form method='POST' action="index.php?uc=ficheFrais&action=changerEtat">
-                <label for="etat-select">Etat : <?php echo $etat ?></label>
-    
-                <select name="etat" id="etat-select">
-                    <option value="">Choisir etat</option>
-                    <option value="CL">Saisie clôturée</option>
-                    <option value="CR">Fiche créée, saisie en cours</option>
-                    <option value="RB">Remboursée</option>
-                    <option value="VA">Validée et mise en paiement</option>
-                </select>
-                <input type="submit" value="Valider">
-                <input hidden name="idFiche" type="text" value="<?php echo $id ?>">
+                <div>
+                    <label for="etat-select">Etat : <?php echo $etat ?></label>
+                </div>
+                <div>
+                    <select name="etat" id="etat-select">
+                        <option value="">--Changer Etat--</option>
+                        <?php
+                        foreach($etats as $etat) 
+                        {
+                            $idEtat = $etat['id'];
+                            $libEtat = $etat['libelle'];
+                        ?>
+                        <option value="<?php echo $idEtat ?>"><?php echo $libEtat ?></option>
+                        <?php } ?>
+                    </select>
+                    <input type="submit" value="Valider">
+                    <input hidden name="idFiche" type="text" value="<?php echo $id ?>">
+                </div>
             </form>
         </td>
     </tr>
-    <?php } ?>
+<?php } ?>
