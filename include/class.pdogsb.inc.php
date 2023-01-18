@@ -15,7 +15,7 @@
  * @link       http://www.php.net/manual/fr/book.pdo.php
  */
 
-class PdoGsb{   		
+class PdoGsb{
       	private static $serveur='mysql:host=localhost';
       	private static $bdd='dbname=gsb';   		
       	private static $user='root' ;    		
@@ -61,6 +61,39 @@ class PdoGsb{
 		return $ligne;
 	}
 
+/**
+ * Retourne les informations du DAF
+ 
+ * @param $login 
+ * @param $mdp
+ * @return l'id, le nom et le prénom sous la forme d'un tableau associatif 
+*/
+	public function getInfosDAF($login, $mdp){
+		$req = "select DAF.id as id, DAF.nom as nom, DAF.prenom as prenom from DAF 
+		where DAF.login='$login' and DAF.mdp='$mdp'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+
+/**
+ * Retourne les informations du DAF
+*/
+	public function getFiches(){
+		$req = "select idFiche as id, nom as nom, prenom as prenom, mois as mois, 
+		nbJustificatifs as nbJustificatifs, montantValide as montant, dateModif as dateModif, 
+		libelle as etat from FicheFrais as F INNER JOIN Visiteur as V ON F.idVisiteur = V.id INNER JOIN Etat as E ON F.idEtat = E.id";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
+
+
+	public function changeEtat($idFiche, $etat){
+		$req = "update FicheFrais set idEtat = '$etat' 
+		where FicheFrais.idFiche = '$idFiche'";
+		PdoGsb::$monPdo->exec($req);
+	}
 /**
  * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
  * concernées par les deux arguments
