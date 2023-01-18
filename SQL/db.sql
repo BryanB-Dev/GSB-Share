@@ -24,6 +24,33 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gsb` /*!40100 DEFAULT CHARACTER SET ut
 USE `gsb`;
 
 --
+-- Table structure for table `DAF`
+--
+
+DROP TABLE IF EXISTS `DAF`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DAF` (
+  `id` char(4) NOT NULL,
+  `nom` char(30) DEFAULT NULL,
+  `prenom` char(30) DEFAULT NULL,
+  `login` char(20) DEFAULT NULL,
+  `mdp` char(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `DAF`
+--
+
+LOCK TABLES `DAF` WRITE;
+/*!40000 ALTER TABLE `DAF` DISABLE KEYS */;
+INSERT INTO `DAF` VALUES ('9999','a','a','aaa','aaa');
+/*!40000 ALTER TABLE `DAF` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Etat`
 --
 
