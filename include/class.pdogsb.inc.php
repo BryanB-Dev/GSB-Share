@@ -280,10 +280,10 @@ class PdoGsb{
  * @param $date : la date du frais au format français jj//mm/aaaa
  * @param $montant : le montant
 */
-	public function creeNouveauFraisHorsForfait($idVisiteur,$mois,$libelle,$date,$montant){
+	public function creeNouveauFraisHorsForfait($idVisiteur,$mois,$libelle,$date,$montant,$paiement){
 		$dateFr = dateFrancaisVersAnglais($date);
-		$req = "insert into LigneFraisHorsForfait(idVisiteur,mois,libelle,date,montant) 
-		values('$idVisiteur','$mois','$libelle','$dateFr','$montant')";
+		$req = "insert into LigneFraisHorsForfait(idVisiteur,mois,libelle,date,montant,paiement) 
+		values('$idVisiteur','$mois','$libelle','$dateFr','$montant','$paiement')";
 		PdoGsb::$monPdo->exec($req);
 	}
 /**
