@@ -105,6 +105,13 @@ class PdoGsb{
 		PdoGsb::$monPdo->exec($req);
 	}
 
+	public function getPaiements() {
+		$req = "select libelle as libelle, id as id from Paiement";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
+
 /**
  * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
  * concernées par les deux arguments
