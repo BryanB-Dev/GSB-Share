@@ -48,6 +48,19 @@
               <label for="txtMontantHF">Montant : </label>
               <input type="text" id="txtMontantHF" name="montant" size="10" maxlength="10" value="" />
             </p>
+            <p>
+              <label for="modep">Mode Paiement :</label>
+              <select name="paiement" id="modep" > 
+              <?php
+                        foreach($paiements as $paiement) 
+                        {
+                            $id = $paiement['id'];
+                            $libelle = $paiement['libelle'];
+                        ?>
+                        <option value="<?php echo $id ?>"><?php echo $libelle ?></option>
+                        <?php } ?>
+              </select>
+            </p>
           </fieldset>
       </div>
       <div class="piedForm">
