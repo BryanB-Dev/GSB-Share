@@ -6,7 +6,7 @@
     <ul id="menuList">
         <li>
             DAF :<br>
-            <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']  ?>
+            <?php echo $_SESSION['prenom'] . "  " . $_SESSION['nom']  ?>
         </li>
         <li class="smenu">
             <a href="index.php?uc=ficheFrais" title="Saisie fiche de frais ">Liste Fiches de Frais</a>
