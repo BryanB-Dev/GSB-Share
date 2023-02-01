@@ -52,5 +52,3 @@ $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
 $paiements= $pdo->getPaiements();
 include("vues/v_listeFraisForfait.php");
 include("vues/v_listeFraisHorsForfait.php");
-
-?>
