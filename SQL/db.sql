@@ -1,86 +1,39 @@
--- MariaDB dump 10.19  Distrib 10.5.18-MariaDB, for debian-linux-gnu (x86_64)
---
--- Host: localhost    Database: gsb
--- ------------------------------------------------------
--- Server version	10.5.18-MariaDB-0+deb11u1
+-- Adminer 4.7.9 MySQL dump
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
---
--- Current Database: `gsb`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gsb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-
-USE `gsb`;
-
---
--- Table structure for table `DAF`
---
+SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS `DAF`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `DAF` (
-  `id` char(4) NOT NULL,
-  `nom` char(30) DEFAULT NULL,
-  `prenom` char(30) DEFAULT NULL,
-  `login` char(20) DEFAULT NULL,
-  `mdp` char(20) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `nom` varchar(100) NOT NULL,
+  `prenom` varchar(100) NOT NULL,
+  `Login` varchar(100) NOT NULL,
+  `mdp` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `DAF`
---
-
-LOCK TABLES `DAF` WRITE;
-/*!40000 ALTER TABLE `DAF` DISABLE KEYS */;
-INSERT INTO `DAF` VALUES ('9999','a','a','aaa','aaa');
-/*!40000 ALTER TABLE `DAF` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Etat`
---
+INSERT INTO `DAF` (`id`, `nom`, `prenom`, `Login`, `mdp`) VALUES
+(1,	'bonnier',	'romain',	'Rom',	'daf');
 
 DROP TABLE IF EXISTS `Etat`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Etat` (
   `id` char(2) NOT NULL,
   `libelle` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `Etat`
---
-
-LOCK TABLES `Etat` WRITE;
-/*!40000 ALTER TABLE `Etat` DISABLE KEYS */;
-INSERT INTO `Etat` VALUES ('CL','Saisie clôturée'),('CR','Fiche créée, saisie en cours'),('RB','Remboursée'),('VA','Validée et mise en paiement');
-/*!40000 ALTER TABLE `Etat` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `FicheFrais`
---
+INSERT INTO `Etat` (`id`, `libelle`) VALUES
+('CL',	'Saisie clôturéeeeeeeeeeeeee'),
+('CR',	'Fiche créée, saisie en cours'),
+('RB',	'Remboursé'),
+('VA',	'Validée et mise en paiement');
 
 DROP TABLE IF EXISTS `FicheFrais`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `FicheFrais` (
   `idFiche` int(4) NOT NULL AUTO_INCREMENT,
   `idVisiteur` char(4) NOT NULL,
@@ -89,56 +42,32 @@ CREATE TABLE `FicheFrais` (
   `montantValide` decimal(10,2) DEFAULT NULL,
   `dateModif` date DEFAULT NULL,
   `idEtat` char(2) DEFAULT 'CR',
-  PRIMARY KEY (`idVisiteur`,`mois`,`idFiche`),
+  PRIMARY KEY (`idVisiteur`,`mois`),
   UNIQUE KEY `id` (`idFiche`),
   KEY `idEtat` (`idEtat`),
   CONSTRAINT `FicheFrais_ibfk_1` FOREIGN KEY (`idEtat`) REFERENCES `Etat` (`id`),
   CONSTRAINT `FicheFrais_ibfk_2` FOREIGN KEY (`idVisiteur`) REFERENCES `Visiteur` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `FicheFrais`
---
-
-LOCK TABLES `FicheFrais` WRITE;
-/*!40000 ALTER TABLE `FicheFrais` DISABLE KEYS */;
-INSERT INTO `FicheFrais` VALUES (1,'a131','01',0,0.00,'2023-01-11','CR'),(3,'a131','02',0,0.00,'2023-02-12','CL'),(2,'b34','01',0,0.00,'2023-01-12','RB');
-/*!40000 ALTER TABLE `FicheFrais` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `FraisForfait`
---
+INSERT INTO `FicheFrais` (`idFiche`, `idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
+(1,	'a131',	'01',	0,	0.00,	'2023-01-11',	'CL'),
+(2,	'a93',	'01',	0,	0.00,	'2023-01-12',	'RB');
 
 DROP TABLE IF EXISTS `FraisForfait`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `FraisForfait` (
   `id` char(3) NOT NULL,
   `libelle` char(20) DEFAULT NULL,
   `montant` decimal(5,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `FraisForfait`
---
-
-LOCK TABLES `FraisForfait` WRITE;
-/*!40000 ALTER TABLE `FraisForfait` DISABLE KEYS */;
-INSERT INTO `FraisForfait` VALUES ('ETP','Forfait Etape',110.00),('KM','Frais Kilométrique',0.62),('NUI','Nuitée Hôtel',80.00),('REP','Repas Restaurant',25.00);
-/*!40000 ALTER TABLE `FraisForfait` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `LigneFraisForfait`
---
+INSERT INTO `FraisForfait` (`id`, `libelle`, `montant`) VALUES
+('ETP',	'Forfait Etape',	110.00),
+('KM',	'Frais Kilométrique',	0.62),
+('NUI',	'Nuitée Hôtel',	80.00),
+('REP',	'Repas Restaurant',	25.00);
 
 DROP TABLE IF EXISTS `LigneFraisForfait`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `LigneFraisForfait` (
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
@@ -149,25 +78,18 @@ CREATE TABLE `LigneFraisForfait` (
   CONSTRAINT `LigneFraisForfait_ibfk_1` FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES `FicheFrais` (`idVisiteur`, `mois`),
   CONSTRAINT `LigneFraisForfait_ibfk_2` FOREIGN KEY (`idFraisForfait`) REFERENCES `FraisForfait` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `LigneFraisForfait`
---
-
-LOCK TABLES `LigneFraisForfait` WRITE;
-/*!40000 ALTER TABLE `LigneFraisForfait` DISABLE KEYS */;
-INSERT INTO `LigneFraisForfait` VALUES ('a131','01','ETP',1),('a131','01','KM',2),('a131','01','NUI',3),('a131','01','REP',4),('b34','01','ETP',5),('b34','01','KM',5),('b34','01','NUI',6),('b34','01','REP',8);
-/*!40000 ALTER TABLE `LigneFraisForfait` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `LigneFraisHorsForfait`
---
+INSERT INTO `LigneFraisForfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quantite`) VALUES
+('a131',	'01',	'ETP',	2),
+('a131',	'01',	'KM',	200),
+('a131',	'01',	'NUI',	3),
+('a131',	'01',	'REP',	3),
+('a93',	'01',	'ETP',	0),
+('a93',	'01',	'KM',	0),
+('a93',	'01',	'NUI',	0),
+('a93',	'01',	'REP',	0);
 
 DROP TABLE IF EXISTS `LigneFraisHorsForfait`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `LigneFraisHorsForfait` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idVisiteur` char(4) NOT NULL,
@@ -175,29 +97,34 @@ CREATE TABLE `LigneFraisHorsForfait` (
   `libelle` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
+  `paiement` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idVisiteur` (`idVisiteur`,`mois`),
-  CONSTRAINT `LigneFraisHorsForfait_ibfk_1` FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES `FicheFrais` (`idVisiteur`, `mois`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `paiement` (`paiement`),
+  CONSTRAINT `LigneFraisHorsForfait_ibfk_1` FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES `FicheFrais` (`idVisiteur`, `mois`),
+  CONSTRAINT `LigneFraisHorsForfait_ibfk_2` FOREIGN KEY (`paiement`) REFERENCES `ModePaiement` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `LigneFraisHorsForfait`
---
+INSERT INTO `LigneFraisHorsForfait` (`id`, `idVisiteur`, `mois`, `libelle`, `date`, `montant`, `paiement`) VALUES
+(1,	'a131',	'01',	'Nouveau',	'2023-01-11',	100.00,	0),
+(2,	'a131',	'01',	'chocolat',	'2023-01-11',	50.00,	0),
+(3,	'a93',	'01',	'Oui',	'2023-01-12',	300.00,	0),
+(4,	'a131',	'01',	'Nouveau',	'2023-01-26',	100.00,	2),
+(5,	'a131',	'01',	'Nouveau',	'2023-01-26',	100.00,	2);
 
-LOCK TABLES `LigneFraisHorsForfait` WRITE;
-/*!40000 ALTER TABLE `LigneFraisHorsForfait` DISABLE KEYS */;
-INSERT INTO `LigneFraisHorsForfait` VALUES (2,'a131','01','lk,rg,rkgrk,','2023-01-10',1243.00),(3,'b34','01','aaaaaaaaa','2023-01-12',12335453.00),(4,'a131','01','aaa','2022-12-01',32.00);
-/*!40000 ALTER TABLE `LigneFraisHorsForfait` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `ModePaiement`;
+CREATE TABLE `ModePaiement` (
+  `id` int(11) NOT NULL,
+  `libelle` char(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Table structure for table `Visiteur`
---
+INSERT INTO `ModePaiement` (`id`, `libelle`) VALUES
+(0,	'Espèce'),
+(1,	'Chèque'),
+(2,	'Carte Bancaire');
 
 DROP TABLE IF EXISTS `Visiteur`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Visiteur` (
   `id` char(4) NOT NULL,
   `nom` char(30) DEFAULT NULL,
@@ -210,25 +137,34 @@ CREATE TABLE `Visiteur` (
   `dateEmbauche` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `Visiteur`
---
+INSERT INTO `Visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`) VALUES
+('a131',	'Villechalane',	'Louis',	'lvillachane',	'jux7g',	'8 rue des Charmes',	'46000',	'Cahors',	'2005-12-21'),
+('a17',	'Andre',	'David',	'dandre',	'oppg5',	'1 rue Petit',	'46200',	'Lalbenque',	'1998-11-23'),
+('a55',	'Bedos',	'Christian',	'cbedos',	'gmhxd',	'1 rue Peranud',	'46250',	'Montcuq',	'1995-01-12'),
+('a93',	'Tusseau',	'Louis',	'ltusseau',	'ktp3s',	'22 rue des Ternes',	'46123',	'Gramat',	'2000-05-01'),
+('b13',	'Bentot',	'Pascal',	'pbentot',	'doyw1',	'11 allée des Cerises',	'46512',	'Bessines',	'1992-07-09'),
+('b16',	'Bioret',	'Luc',	'lbioret',	'hrjfs',	'1 Avenue gambetta',	'46000',	'Cahors',	'1998-05-11'),
+('b19',	'Bunisset',	'Francis',	'fbunisset',	'4vbnd',	'10 rue des Perles',	'93100',	'Montreuil',	'1987-10-21'),
+('b25',	'Bunisset',	'Denise',	'dbunisset',	's1y1r',	'23 rue Manin',	'75019',	'paris',	'2010-12-05'),
+('b28',	'Cacheux',	'Bernard',	'bcacheux',	'uf7r3',	'114 rue Blanche',	'75017',	'Paris',	'2009-11-12'),
+('b34',	'Cadic',	'Eric',	'ecadic',	'6u8dc',	'123 avenue de la République',	'75011',	'Paris',	'2008-09-23'),
+('b4',	'Charoze',	'Catherine',	'ccharoze',	'u817o',	'100 rue Petit',	'75019',	'Paris',	'2005-11-12'),
+('b50',	'Clepkens',	'Christophe',	'cclepkens',	'bw1us',	'12 allée des Anges',	'93230',	'Romainville',	'2003-08-11'),
+('b59',	'Cottin',	'Vincenne',	'vcottin',	'2hoh9',	'36 rue Des Roches',	'93100',	'Monteuil',	'2001-11-18'),
+('c14',	'Daburon',	'François',	'fdaburon',	'7oqpv',	'13 rue de Chanzy',	'94000',	'Créteil',	'2002-02-11'),
+('c3',	'De',	'Philippe',	'pde',	'gk9kx',	'13 rue Barthes',	'94000',	'Créteil',	'2010-12-14'),
+('c54',	'Debelle',	'Michel',	'mdebelle',	'od5rt',	'181 avenue Barbusse',	'93210',	'Rosny',	'2006-11-23'),
+('d13',	'Debelle',	'Jeanne',	'jdebelle',	'nvwqq',	'134 allée des Joncs',	'44000',	'Nantes',	'2000-05-11'),
+('d51',	'Debroise',	'Michel',	'mdebroise',	'sghkb',	'2 Bld Jourdain',	'44000',	'Nantes',	'2001-04-17'),
+('e22',	'Desmarquest',	'Nathalie',	'ndesmarquest',	'f1fob',	'14 Place d Arc',	'45000',	'Orléans',	'2005-11-12'),
+('e24',	'Desnost',	'Pierre',	'pdesnost',	'4k2o5',	'16 avenue des Cèdres',	'23200',	'Guéret',	'2001-02-05'),
+('e39',	'Dudouit',	'Frédéric',	'fdudouit',	'44im8',	'18 rue de l église',	'23120',	'GrandBourg',	'2000-08-01'),
+('e49',	'Duncombe',	'Claude',	'cduncombe',	'qf77j',	'19 rue de la tour',	'23100',	'La souteraine',	'1987-10-10'),
+('e5',	'Enault-Pascreau',	'Céline',	'cenault',	'y2qdu',	'25 place de la gare',	'23200',	'Gueret',	'1995-09-01'),
+('e52',	'Eynde',	'Valérie',	'veynde',	'i7sn3',	'3 Grand Place',	'13015',	'Marseille',	'1999-11-01'),
+('f21',	'Finck',	'Jacques',	'jfinck',	'mpb3t',	'10 avenue du Prado',	'13002',	'Marseille',	'2001-11-10'),
+('f39',	'Frémont',	'Fernande',	'ffremont',	'xs5tq',	'4 route de la mer',	'13012',	'Allauh',	'1998-10-01'),
+('f4',	'Gest',	'Alain',	'agest',	'dywvt',	'30 avenue de la mer',	'13025',	'Berre',	'1985-11-01');
 
-LOCK TABLES `Visiteur` WRITE;
-/*!40000 ALTER TABLE `Visiteur` DISABLE KEYS */;
-INSERT INTO `Visiteur` VALUES ('a131','Villechalane','Louis','lvillachane','jux7g','8 rue des Charmes','46000','Cahors','2005-12-21'),('a17','Andre','David','dandre','oppg5','1 rue Petit','46200','Lalbenque','1998-11-23'),('a55','Bedos','Christian','cbedos','gmhxd','1 rue Peranud','46250','Montcuq','1995-01-12'),('a93','Tusseau','Louis','ltusseau','ktp3s','22 rue des Ternes','46123','Gramat','2000-05-01'),('b13','Bentot','Pascal','pbentot','doyw1','11 allée des Cerises','46512','Bessines','1992-07-09'),('b16','Bioret','Luc','lbioret','hrjfs','1 Avenue gambetta','46000','Cahors','1998-05-11'),('b19','Bunisset','Francis','fbunisset','4vbnd','10 rue des Perles','93100','Montreuil','1987-10-21'),('b25','Bunisset','Denise','dbunisset','s1y1r','23 rue Manin','75019','paris','2010-12-05'),('b28','Cacheux','Bernard','bcacheux','uf7r3','114 rue Blanche','75017','Paris','2009-11-12'),('b34','Cadic','Eric','ecadic','6u8dc','123 avenue de la République','75011','Paris','2008-09-23'),('b4','Charoze','Catherine','ccharoze','u817o','100 rue Petit','75019','Paris','2005-11-12'),('b50','Clepkens','Christophe','cclepkens','bw1us','12 allée des Anges','93230','Romainville','2003-08-11'),('b59','Cottin','Vincenne','vcottin','2hoh9','36 rue Des Roches','93100','Monteuil','2001-11-18'),('c14','Daburon','François','fdaburon','7oqpv','13 rue de Chanzy','94000','Créteil','2002-02-11'),('c3','De','Philippe','pde','gk9kx','13 rue Barthes','94000','Créteil','2010-12-14'),('c54','Debelle','Michel','mdebelle','od5rt','181 avenue Barbusse','93210','Rosny','2006-11-23'),('d13','Debelle','Jeanne','jdebelle','nvwqq','134 allée des Joncs','44000','Nantes','2000-05-11'),('d51','Debroise','Michel','mdebroise','sghkb','2 Bld Jourdain','44000','Nantes','2001-04-17'),('e22','Desmarquest','Nathalie','ndesmarquest','f1fob','14 Place d Arc','45000','Orléans','2005-11-12'),('e24','Desnost','Pierre','pdesnost','4k2o5','16 avenue des Cèdres','23200','Guéret','2001-02-05'),('e39','Dudouit','Frédéric','fdudouit','44im8','18 rue de l église','23120','GrandBourg','2000-08-01'),('e49','Duncombe','Claude','cduncombe','qf77j','19 rue de la tour','23100','La souteraine','1987-10-10'),('e5','Enault-Pascreau','Céline','cenault','y2qdu','25 place de la gare','23200','Gueret','1995-09-01'),('e52','Eynde','Valérie','veynde','i7sn3','3 Grand Place','13015','Marseille','1999-11-01'),('f21','Finck','Jacques','jfinck','mpb3t','10 avenue du Prado','13002','Marseille','2001-11-10'),('f39','Frémont','Fernande','ffremont','xs5tq','4 route de la mer','13012','Allauh','1998-10-01'),('f4','Gest','Alain','agest','dywvt','30 avenue de la mer','13025','Berre','1985-11-01');
-/*!40000 ALTER TABLE `Visiteur` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2023-01-18 18:40:01
+-- 2023-01-26 14:43:39
