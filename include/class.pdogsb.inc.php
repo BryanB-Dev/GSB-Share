@@ -105,6 +105,13 @@ class PdoGsb{
 		PdoGsb::$monPdo->exec($req);
 	}
 
+	public function getPaiements() {
+		$req = "select libelle as libelle, id as id from ModePaiement";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
+
 /**
  * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
  * concernées par les deux arguments
@@ -117,8 +124,11 @@ class PdoGsb{
  * @return tous les champs des lignes de frais hors forfait sous la forme d'un tableau associatif 
 */
 	public function getLesFraisHorsForfait($idVisiteur,$mois){
-	    $req = "select * from LigneFraisHorsForfait where LigneFraisHorsForfait.idVisiteur ='$idVisiteur' 
-		and LigneFraisHorsForfait.mois = '$mois' ";	
+	    $req = "select L.id as id, L.libelle as libelle, L.date as 'date', L.montant as montant, M.libelle as paiement 
+		from LigneFraisHorsForfait as L
+		inner join ModePaiement as M on L.paiement = M.id
+		where L.idVisiteur ='$idVisiteur' 
+		and L.mois = '$mois' ";	
 		$res = PdoGsb::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		$nbLignes = count($lesLignes);
@@ -273,10 +283,10 @@ class PdoGsb{
  * @param $date : la date du frais au format français jj//mm/aaaa
  * @param $montant : le montant
 */
-	public function creeNouveauFraisHorsForfait($idVisiteur,$mois,$libelle,$date,$montant){
+	public function creeNouveauFraisHorsForfait($idVisiteur,$mois,$libelle,$date,$montant,$paiement){
 		$dateFr = dateFrancaisVersAnglais($date);
-		$req = "insert into LigneFraisHorsForfait(idVisiteur,mois,libelle,date,montant) 
-		values('$idVisiteur','$mois','$libelle','$dateFr','$montant')";
+		$req = "insert into LigneFraisHorsForfait(idVisiteur,mois,libelle,date,montant,paiement) 
+		values('$idVisiteur','$mois','$libelle','$dateFr','$montant','$paiement')";
 		PdoGsb::$monPdo->exec($req);
 	}
 /**

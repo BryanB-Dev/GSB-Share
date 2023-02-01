@@ -5,7 +5,8 @@
              <tr>
                 <th class="date">Date</th>
 				<th class="libelle">Libellé</th>  
-                <th class="montant">Montant</th>  
+                <th class="montant">Montant</th>
+                <th class="paiement">Mode de Paiement</th>  
                 <th class="action">&nbsp;</th>              
              </tr>
           
@@ -16,11 +17,13 @@
 			$date = $unFraisHorsForfait['date'];
 			$montant=$unFraisHorsForfait['montant'];
 			$id = $unFraisHorsForfait['id'];
+      $paiement = $unFraisHorsForfait['paiement'];
 	?>		
             <tr>
                 <td> <?php echo $date ?></td>
                 <td><?php echo $libelle ?></td>
                 <td><?php echo $montant ?></td>
+                <td><?php echo $paiement ?></td>
                 <td><a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" 
 				onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">Supprimer ce frais</a></td>
              </tr>
@@ -47,6 +50,19 @@
             <p>
               <label for="txtMontantHF">Montant : </label>
               <input type="text" id="txtMontantHF" name="montant" size="10" maxlength="10" value="" />
+            </p>
+            <p>
+              <label for="modep">Mode Paiement :</label>
+              <select name="paiement" id="modep" > 
+              <?php
+                        foreach($paiements as $paiement) 
+                        {
+                            $id = $paiement['id'];
+                            $libelle = $paiement['libelle'];
+                        ?>
+                        <option value="<?php echo $id ?>"><?php echo $libelle ?></option>
+                        <?php } ?>
+              </select>
             </p>
           </fieldset>
       </div>
