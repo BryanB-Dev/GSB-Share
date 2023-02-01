@@ -1,24 +1,28 @@
 /* Styles des divisions principales de la page */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
+
+
 body{
-  background-color: #77AADD;
-	background-image: url(imgs/FONDGLOBAL.jpg);
-	background-repeat: repeat-x;
+  background:linear-gradient(#000000,#434343);
   margin:0% 0%;
-  padding : 0.6em;
+  padding : 0;
   font-family:"Trebuchet MS",Verdana,Geneva,Arial,Helvetica,sans-serif;
   font-size:0.8em;
+  font-family: 'Montserrat',sans-serif;
 }
 #page {
-  background-color:white;
+  background-color: white;
   width : 65%;
   margin : auto ;
   border : 0.2em solid black;
   padding : 0.1em;
 }
 #entete{
-  background-color:rgb(72,198,236);
-	color : #980101;
-	border: solid 0.1em #980101;
+  background:linear-gradient(#232526,#414345);
+	color : white;
+	border: solid 0.1em transparent;
 	height: 154px;
 	padding: 0em;
 	border-collapse: separate;
@@ -36,10 +40,11 @@ body{
 	margin-top : 0.8em;
 	padding: 1em;
 	background-color: white;
-	color: rgb(0,85,227);
+	color: black;
 	float: left;
 	width: 14%;
 }
+
 
 #contenu{
 	border: none;
@@ -79,20 +84,20 @@ ul#menuList li {
 
 /* apparences des liens dans listes et sous-listes non num�rot�es */
 ul#menuList a {
-    color:rgb(0,85,227);
+    color:#000000;
     display:block;
     text-decoration:none;
     width:100%;
 }
 ul#menuList a:hover {
-    background: rgb(0,85,227);
+    background: red;
     color: white;
 }
 
 #entete #logoGSB {
   float : left;
-  width : 238px;
-  height : 152px;
+  width : 162px;
+  height : 150px;
 }
 
 #entete h1 {
@@ -206,7 +211,7 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 }
 #contenu a:hover {
    text-decoration:underline;
-   background-color : #D9BB7A;
+   background-color : red;
    font-size : 1em;
 }
 
@@ -227,13 +232,14 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 
 /* Style pour les lignes d'en-t�te des tableaux */
 th {  
-   background-color:#77AADD;
+   background:linear-gradient(#232526,#414345);
    height:21px;
    text-align:left;
    vertical-align:top;
    font-weight:bold;
    border-bottom:0.1em solid #777777;
    font-size:1.1em;
+   color: white;
 } 
 
 #contenu td {
@@ -250,7 +256,7 @@ table.listeLegere {
 
 /* Tableaux quadrill�s utilis�s pour l'affichage de listes avec contenu l�ger*/ 
 table.listeLegere th, table.listeLegere td {
-  border : dotted rgb(178,207,81) 0.1em;
+  border : solid grey 0.1em;
   padding:0.5em;
   vertical-align : top;
   text-align : left;
@@ -266,31 +272,47 @@ table.listeLegere td {
   font-weight:normal;
 }
 table.listeLegere th.eltForfait{
-  color:black;
+  color:white;
 }
 table.listeLegere th.date, table.listeLegere th.montant{
   width:15%;
-  color:black;
+  color:white;
 }
 table.listeLegere th.libelle{
   width:70%;
-  color:black;
+  color:white;
 }
 
 #contenu h2 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	font-weight: bold;
-	color: #1D2941;
+	color: black;
 	text-decoration: none;
-	border : 1px solid #6988BE;
+	border : 1px solid grey;
 	padding-left: 25px;
-	background-color: #E9F1FE;
+	background-color: #d6d6d6;
   height : 28px;
+  margin-block: 10px;
 }
 
 #contenu img {
   height : 28px;
   float : left;
-
 }
+
+footer{
+  position:fixed;
+  bottom: 0;
+}
+
+footer a{
+  color: white;
+  text-decoration: none;
+  text-align: right;
+}
+
+/* #icon{
+  
+} */
+
