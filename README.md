@@ -20,7 +20,7 @@ Projet réalisé à partir du projet [test22](https://github.com/olivierdupeyrat
 
 ## Modèle de données (mode de paiement)
 
-![modèle de données](https://user-images.githubusercontent.com/118251884/215981614-573e89d0-4c47-4184-8ac3-21a32aa7da71.png)
+![image (1)](https://user-images.githubusercontent.com/118251884/215982481-1941dd2f-ba98-43f6-908a-bc53d91e168d.jpg)
 
 ## Requête SQL 
 
@@ -32,7 +32,3 @@ Projet réalisé à partir du projet [test22](https://github.com/olivierdupeyrat
 
 * **Bryan** - [BryanB-Dev](https://github.com/BryanB-Dev)
 * **Romain** - [RomainBnr](https://github.com/RomainBnr)
-
-
-
-
