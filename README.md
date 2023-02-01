@@ -24,7 +24,7 @@ Projet réalisé à partir du projet [test22](https://github.com/olivierdupeyrat
 
 ## Requête SQL 
 
-![requête SQL](https://user-images.githubusercontent.com/118251884/215981719-cdafe6e2-a6f5-41e8-8272-bcabf9111afc.png)
+![image](https://user-images.githubusercontent.com/118251884/215983333-9ba84823-af71-41fb-8ab3-55d7cb3f0168.png)
 
 ## Screenshots
 
