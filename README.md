@@ -16,7 +16,7 @@ Projet réalisé à partir du projet [test22](https://github.com/olivierdupeyrat
 
 ## Maquette mode de paiement
 
-![maquette modePaiement](https://user-images.githubusercontent.com/118251884/215981378-2ef9a951-c1fb-4285-9f79-8ab0c149ed71.png)
+![image](https://user-images.githubusercontent.com/118251884/215982076-cd9ce0d9-c1c7-4466-b50d-1866672e63da.jpg)
 
 ## Modèle de données (mode de paiement)
 
@@ -32,6 +32,7 @@ Projet réalisé à partir du projet [test22](https://github.com/olivierdupeyrat
 
 * **Bryan** - [BryanB-Dev](https://github.com/BryanB-Dev)
 * **Romain** - [RomainBnr](https://github.com/RomainBnr)
+
 
 
 
