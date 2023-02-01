@@ -15,7 +15,6 @@ Projet réalisé à partir du projet [test22](https://github.com/olivierdupeyrat
 ![image](https://user-images.githubusercontent.com/114593798/213725515-55e0ad16-d0ff-4805-b3ae-4cf8297a10c9.png)
 ![Diagramme sans nom drawio](https://user-images.githubusercontent.com/118251884/216006630-a8df24f0-0a92-4235-8b65-8b6cc8b87771.png)
 
-
 ## Maquette mode de paiement
 
 ![image](https://user-images.githubusercontent.com/118251884/215982076-cd9ce0d9-c1c7-4466-b50d-1866672e63da.jpg)
