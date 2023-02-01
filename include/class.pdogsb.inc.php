@@ -75,7 +75,12 @@ class PdoGsb{
 		$ligne = $rs->fetch();
 		return $ligne;
 	}
-	
+
+/**
+ * Retourne les fiches de frais
+ 
+ * @return un tableau associatif 
+*/
 	public function getFiches(){
 		$req = "select idFiche as id, nom as nom, prenom as prenom, mois as mois, 
 		nbJustificatifs as nbJustificatifs, montantValide as montant, dateModif as dateModif, 
@@ -86,25 +91,49 @@ class PdoGsb{
 		return $ligne;
 	}
 
+/**
+ * Retourne les etats
+ 
+ * @return un tableau associatif 
+*/
 	public function getEtat(){
 		$req = "select libelle as libelle, id as id from Etat";
 		$rs = PdoGsb::$monPdo->query($req);
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
-
+	
+/**
+ * met à jour l'etat d'une fiche
+ * pour la fiche concerné concerné
+ 
+ * @param $idFiche 
+ * @param $etat
+*/
 	public function changeEtat($idFiche, $etat){
 		$req = "update FicheFrais set idEtat = '$etat' 
 		where FicheFrais.idFiche = '$idFiche'";
 		PdoGsb::$monPdo->exec($req);
 	}
 
+/**
+ * met à jour le libelle d'un etat
+ * pour l'id concerné
+ 
+ * @param $id 
+ * @param $lib
+*/
 	public function changeLib($id, $lib){
 		$req = "update Etat set libelle = '$lib' 
 		where Etat.id = '$id'";
 		PdoGsb::$monPdo->exec($req);
 	}
 
+/**
+ * Retourne les modes de paiements
+ 
+ * @return un tableau associatif 
+*/
 	public function getPaiements() {
 		$req = "select libelle as libelle, id as id from ModePaiement";
 		$rs = PdoGsb::$monPdo->query($req);
