@@ -13,4 +13,16 @@ switch ($action) {
 			header('Location: /index.php?uc=gestionPaiement');
 			break;
 		}
+	case 'supprimerPaiement': {
+			$id = $_REQUEST['idPaiement'];
+			$pdo->deletePaiement($id);
+			header('Location: /index.php?uc=gestionPaiement');
+			break;
+		}
+	case 'ajouterPaiement': {
+			$lib = $_REQUEST['libPaiement'];
+			$pdo->addPaiement($lib);
+			header('Location: /index.php?uc=gestionPaiement');
+			break;
+		}
 }

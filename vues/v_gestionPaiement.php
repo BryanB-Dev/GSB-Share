@@ -6,9 +6,19 @@
         $libPaiement = $paiement['libelle'];
     ?>
         <form method='POST' action="index.php?uc=gestionPaiement&action=changerLib">
-            <input type="text" name="libPaiement" style="width:200px" value="<?php echo $libPaiement ?>"></option>
-            <input hidden type="text" name="idPaiement" value="<?php echo $idPaiement ?>"></option>
+            <input type="text" name="libPaiement" style="width:200px" value="<?php echo $libPaiement ?>">
+            <input hidden type="text" name="idPaiement" value="<?php echo $idPaiement ?>">
             <input type="submit" value="Changer">
         </form>
-    <?php } ?>
+        
+        <form method="POST" action="index.php?uc=gestionPaiement&action=supprimerPaiement">
+            <input hidden type="text" name="idPaiement" value="<?php echo $idPaiement ?>">
+            <input type="submit" value="Supprimer">
+        </form>
+
+        <?php } ?>
+        <form method="POST" action="index.php?uc=gestionPaiement&action=ajouterPaiement">
+        <input type="text" name="libPaiement">
+            <input type="submit" value="ajouter">
+        </form>
 </div>

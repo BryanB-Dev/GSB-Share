@@ -130,7 +130,7 @@ class PdoGsb{
 	}
 
 /**
- * met à jour le libelle d'un etat
+ * met à jour le libelle d'un mode de paiement
  * pour l'id concerné
  
  * @param $id 
@@ -139,6 +139,29 @@ class PdoGsb{
 	public function changeLibPaiement($id, $lib){
 		$req = "update ModePaiement set libelle = '$lib' 
 		where ModePaiement.id = '$id'";
+		PdoGsb::$monPdo->exec($req);
+	}
+
+/**
+ * supprime un mode de paiement
+ * pour l'id concerné
+ 
+ * @param $id 
+*/
+	public function deletePaiement($id){
+		$req = "delete from ModePaiement 
+		where ModePaiement.id = '$id'";
+		PdoGsb::$monPdo->exec($req);
+	}
+
+/**
+ * ajouter un mode de paiement
+
+ * @param $lib
+*/
+	public function addPaiement($lib){
+		$req = "insert into ModePaiement(libelle)
+		values('$lib')";
 		PdoGsb::$monPdo->exec($req);
 	}
 
