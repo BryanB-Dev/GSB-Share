@@ -5,6 +5,7 @@ require_once ("include/class.pdogsb.inc.php");
 include("vues/v_entete.php") ;
 session_start();
 $pdo = PdoGsb::getPdoGsb();
+ob_start();
 $estConnecte = estConnecte();
 if(!isset($_REQUEST['uc']) || !$estConnecte && $_REQUEST['uc']!='daf'){
      $_REQUEST['uc'] = 'connexion';
@@ -28,6 +29,9 @@ switch($uc){
 	}
 	case 'libEtat' :{
 		include("controleurs/c_libEtat.php");break; 
+	}
+	case 'gestionPaiement':{
+		include("controleurs/c_gestionPaiement.php");break;
 	}
 }
 include("vues/v_pied.php") ;

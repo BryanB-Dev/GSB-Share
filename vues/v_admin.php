@@ -13,6 +13,10 @@
         </li>
         <li class="smenu">
             <a href="index.php?uc=libEtat" title="Saisie libelle etat ">Saisie libelle etat</a>
+        </li class="smenu">
+        <a href="index.php?uc=gestionPaiement" title="Gestion mode de paiement">Gestion paiements</a>
+        <li>
+
         </li>
         <li class="smenu">
             <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>

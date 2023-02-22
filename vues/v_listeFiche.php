@@ -13,7 +13,6 @@
     </tr>
 
     <?php
-    ob_start();
     foreach ($fiches as $fiche) {
         $id = $fiche['id'];
         $prenom = $fiche['prenom'];
