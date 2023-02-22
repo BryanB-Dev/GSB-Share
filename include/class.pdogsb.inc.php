@@ -17,9 +17,9 @@
 
 class PdoGsb{
       	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=GSB-frais';   		
-      	private static $user='admin' ;    		
-      	private static $mdp='simone' ;	
+      	private static $bdd='dbname=gsb';   		
+      	private static $user='test' ;    		
+      	private static $mdp='d76J!LdkCxTXT#3#' ;	
 		private static $monPdo;
 		private static $monPdoGsb=null;
 /**
@@ -126,6 +126,19 @@ class PdoGsb{
 	public function changeLib($id, $lib){
 		$req = "update Etat set libelle = '$lib' 
 		where Etat.id = '$id'";
+		PdoGsb::$monPdo->exec($req);
+	}
+
+/**
+ * met à jour le libelle d'un etat
+ * pour l'id concerné
+ 
+ * @param $id 
+ * @param $lib
+*/
+	public function changeLibPaiement($id, $lib){
+		$req = "update ModePaiement set libelle = '$lib' 
+		where ModePaiement.id = '$id'";
 		PdoGsb::$monPdo->exec($req);
 	}
 
