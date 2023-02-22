@@ -14,4 +14,10 @@
         <input type="reset" value="Annuler" name="annuler">
         </p>
     </form>
+
+    <form method="POST" action="index.php?uc=visiteur">
+        <p>
+            <input type="submit" value="Visiteur" name="Visiteur">
+        </p>
+    </form>
 </div>
