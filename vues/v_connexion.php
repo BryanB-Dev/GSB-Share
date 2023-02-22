@@ -18,4 +18,8 @@
             </p>
       </form>
 
+      <form method="POST" action="index.php?uc=daf">
+            <input type="submit" value="DAF" name="DAF">
+      </form>
+
 </div>
