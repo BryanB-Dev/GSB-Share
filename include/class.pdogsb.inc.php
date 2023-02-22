@@ -18,8 +18,8 @@
 class PdoGsb{
       	private static $serveur='mysql:host=localhost';
       	private static $bdd='dbname=gsb';   		
-      	private static $user='root' ;    		
-      	private static $mdp='admin' ;	
+      	private static $user='test' ;    		
+      	private static $mdp='d76J!LdkCxTXT#3#' ;	
 		private static $monPdo;
 		private static $monPdoGsb=null;
 /**
@@ -75,7 +75,12 @@ class PdoGsb{
 		$ligne = $rs->fetch();
 		return $ligne;
 	}
-	
+
+/**
+ * Retourne les fiches de frais
+ 
+ * @return un tableau associatif 
+*/
 	public function getFiches(){
 		$req = "select idFiche as id, nom as nom, prenom as prenom, mois as mois, 
 		nbJustificatifs as nbJustificatifs, montantValide as montant, dateModif as dateModif, 
@@ -86,25 +91,97 @@ class PdoGsb{
 		return $ligne;
 	}
 
+/**
+ * Retourne les etats
+ 
+ * @return un tableau associatif 
+*/
 	public function getEtat(){
 		$req = "select libelle as libelle, id as id from Etat";
 		$rs = PdoGsb::$monPdo->query($req);
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
-
+	
+/**
+ * met à jour l'etat d'une fiche
+ * pour la fiche concerné concerné
+ 
+ * @param $idFiche 
+ * @param $etat
+*/
 	public function changeEtat($idFiche, $etat){
 		$req = "update FicheFrais set idEtat = '$etat' 
 		where FicheFrais.idFiche = '$idFiche'";
 		PdoGsb::$monPdo->exec($req);
 	}
 
+/**
+ * met à jour le libelle d'un etat
+ * pour l'id concerné
+ 
+ * @param $id 
+ * @param $lib
+*/
 	public function changeLib($id, $lib){
 		$req = "update Etat set libelle = '$lib' 
 		where Etat.id = '$id'";
 		PdoGsb::$monPdo->exec($req);
 	}
 
+/**
+ * met à jour le libelle d'un mode de paiement
+ * pour l'id concerné
+ 
+ * @param $id 
+ * @param $lib
+*/
+	public function changeLibPaiement($id, $lib){
+		$req = "update ModePaiement set libelle = '$lib' 
+		where ModePaiement.id = '$id'";
+		PdoGsb::$monPdo->exec($req);
+	}
+
+/**
+ * supprime un mode de paiement
+ * pour l'id concerné
+ 
+ * @param $id 
+*/
+	public function deletePaiement($id){
+		$req = "delete from ModePaiement 
+		where ModePaiement.id = '$id'";
+		PdoGsb::$monPdo->exec($req);
+	}
+
+/**
+ * ajouter un mode de paiement
+
+ * @param $lib
+*/
+	public function addPaiement($lib){
+		$req = "insert into ModePaiement(libelle)
+		values('$lib')";
+		PdoGsb::$monPdo->exec($req);
+	}
+
+/**
+ * ajouter un mode de paiement
+
+ * @param $id
+*/
+	public function checkPaiement($id){
+		$req = "select count(*) as ligne from LigneFraisHorsForfait where LigneFraisHorsForfait.paiement = '$id'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+
+/**
+ * Retourne les modes de paiements
+ 
+ * @return un tableau associatif 
+*/
 	public function getPaiements() {
 		$req = "select libelle as libelle, id as id from ModePaiement";
 		$rs = PdoGsb::$monPdo->query($req);

@@ -28,7 +28,7 @@ CREATE TABLE `Etat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `Etat` (`id`, `libelle`) VALUES
-('CL',	'Saisie clôturéeeeeeeeeeeeee'),
+('CL',	'Saisie clôturée'),
 ('CR',	'Fiche créée, saisie en cours'),
 ('RB',	'Remboursé'),
 ('VA',	'Validée et mise en paiement');
@@ -50,8 +50,9 @@ CREATE TABLE `FicheFrais` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `FicheFrais` (`idFiche`, `idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
-(1,	'a131',	'01',	0,	0.00,	'2023-01-11',	'CL'),
-(2,	'a93',	'01',	0,	0.00,	'2023-01-12',	'RB');
+(1,	'a131',	'01',	0,	0.00,	'2023-01-11',	'VA'),
+(3,	'a131',	'02',	0,	0.00,	'2023-02-01',	'CR'),
+(2,	'a93',	'01',	0,	0.00,	'2023-01-12',	'CL');
 
 DROP TABLE IF EXISTS `FraisForfait`;
 CREATE TABLE `FraisForfait` (
@@ -84,6 +85,10 @@ INSERT INTO `LigneFraisForfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quanti
 ('a131',	'01',	'KM',	200),
 ('a131',	'01',	'NUI',	3),
 ('a131',	'01',	'REP',	3),
+('a131',	'02',	'ETP',	0),
+('a131',	'02',	'KM',	0),
+('a131',	'02',	'NUI',	0),
+('a131',	'02',	'REP',	0),
 ('a93',	'01',	'ETP',	0),
 ('a93',	'01',	'KM',	0),
 ('a93',	'01',	'NUI',	0),
@@ -105,24 +110,16 @@ CREATE TABLE `LigneFraisHorsForfait` (
   CONSTRAINT `LigneFraisHorsForfait_ibfk_2` FOREIGN KEY (`paiement`) REFERENCES `ModePaiement` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `LigneFraisHorsForfait` (`id`, `idVisiteur`, `mois`, `libelle`, `date`, `montant`, `paiement`) VALUES
-(1,	'a131',	'01',	'Nouveau',	'2023-01-11',	100.00,	0),
-(2,	'a131',	'01',	'chocolat',	'2023-01-11',	50.00,	0),
-(3,	'a93',	'01',	'Oui',	'2023-01-12',	300.00,	0),
-(4,	'a131',	'01',	'Nouveau',	'2023-01-26',	100.00,	2),
-(5,	'a131',	'01',	'Nouveau',	'2023-01-26',	100.00,	2);
 
 DROP TABLE IF EXISTS `ModePaiement`;
 CREATE TABLE `ModePaiement` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` char(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `ModePaiement` (`id`, `libelle`) VALUES
-(0,	'Espèce'),
-(1,	'Chèque'),
-(2,	'Carte Bancaire');
+(1,	'Espèce');
 
 DROP TABLE IF EXISTS `Visiteur`;
 CREATE TABLE `Visiteur` (
@@ -167,4 +164,4 @@ INSERT INTO `Visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, 
 ('f39',	'Frémont',	'Fernande',	'ffremont',	'xs5tq',	'4 route de la mer',	'13012',	'Allauh',	'1998-10-01'),
 ('f4',	'Gest',	'Alain',	'agest',	'dywvt',	'30 avenue de la mer',	'13025',	'Berre',	'1985-11-01');
 
--- 2023-01-26 14:43:39
+-- 2023-02-22 09:29:51
