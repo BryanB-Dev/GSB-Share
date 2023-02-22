@@ -10,15 +10,17 @@
             <input hidden type="text" name="idPaiement" value="<?php echo $idPaiement ?>">
             <input type="submit" value="Changer">
         </form>
-        
+
         <form method="POST" action="index.php?uc=gestionPaiement&action=supprimerPaiement">
             <input hidden type="text" name="idPaiement" value="<?php echo $idPaiement ?>">
-            <input type="submit" value="Supprimer">
+            <input <?php
+                    $disabled = $pdo->checkPaiement($idPaiement);
+                    if ($disabled['ligne'] != 0) { ?> disabled title="Il reste encore des fiches avec ce mode de paiement" <?php } ?> type="submit" value="Supprimer">
         </form>
 
-        <?php } ?>
-        <form method="POST" action="index.php?uc=gestionPaiement&action=ajouterPaiement">
+    <?php } ?>
+    <form method="POST" action="index.php?uc=gestionPaiement&action=ajouterPaiement">
         <input type="text" name="libPaiement">
-            <input type="submit" value="ajouter">
-        </form>
+        <input type="submit" value="ajouter">
+    </form>
 </div>

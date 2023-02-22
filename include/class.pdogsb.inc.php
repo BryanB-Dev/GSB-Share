@@ -166,6 +166,18 @@ class PdoGsb{
 	}
 
 /**
+ * ajouter un mode de paiement
+
+ * @param $id
+*/
+	public function checkPaiement($id){
+		$req = "select count(*) as ligne from LigneFraisHorsForfait where LigneFraisHorsForfait.paiement = '$id'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+
+/**
  * Retourne les modes de paiements
  
  * @return un tableau associatif 
